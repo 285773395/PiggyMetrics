@@ -1,13 +1,15 @@
 package com.piggymetrics.auth.domain;
 
-import org.springframework.data.annotation.Id;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
+import javax.persistence.*;
 
-@Document(collection = "users")
+@Entity
+@Table(name = "users")
 public class User implements UserDetails {
 
 	@Id
@@ -15,14 +17,20 @@ public class User implements UserDetails {
 
 	private String password;
 
-	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getPassword() {
 		return password;
 	}
 
-	@Override
-	public String getUsername() {
-		return username;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
@@ -30,13 +38,6 @@ public class User implements UserDetails {
 		return null;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	@Override
 	public boolean isAccountNonExpired() {

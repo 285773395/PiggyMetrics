@@ -1,5 +1,11 @@
 spring:
-  data:
-    mongodb:
-      database: piggymetrics
-      port: 0
+  datasource:                           # 指定数据源
+    url: jdbc:mysql://172.20.42.233:3306/webside?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
